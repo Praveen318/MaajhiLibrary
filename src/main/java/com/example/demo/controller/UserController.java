@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -54,8 +55,12 @@ public class UserController {
 	public String add(@RequestBody UserData userData) {
 		User user = Convertor.userdetailstouser(userData);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		try {
 		userRepository.save(user);
 		return "added";
+		}catch (DataIntegrityViolationException ex) {
+			return "email already exist";
+		}
 	}
 
 	@PostMapping("/Logout")
