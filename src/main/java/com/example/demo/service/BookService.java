@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,8 @@ public class BookService {
 			return ("Student not found");
 		}
 		book.setStatus(true);
+		book.setReturnDate(null);
+		book.setIssueDate(LocalDate.now());
 		book.setStudent(student);
 //		student.getBooks().add(book);
 		bookRepository.save(book);
@@ -64,7 +67,8 @@ public class BookService {
 		}
 //        Student student = book.getStudent();
 		book.setStatus(false);
-		book.setStudent(null);
+		book.setReturnDate(LocalDate.now());
+//		book.setStudent(null);
 //        student.getBooks().remove(book);
 		bookRepository.save(book);
 //        studentRepository.save(student);

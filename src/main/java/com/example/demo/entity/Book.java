@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -24,7 +26,9 @@ public class Book {
 	@NotBlank(message = "Book name can't be blank")
 	private String name;
 	private Boolean status = false;
-
+	private LocalDate issueDate;
+	private LocalDate returnDate;
+	
 	@ManyToOne
 	@JoinColumn(name = "student_id", referencedColumnName = "id")
 	@JsonIgnoreProperties
