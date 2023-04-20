@@ -23,7 +23,7 @@ import io.jsonwebtoken.security.Keys;
 public class JwtService {
 
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
 
 	// method to extract username
 	public String extractUseremail(String token) {
