@@ -27,7 +27,8 @@ public class SecurityConfig {
 	// defining the security rules for incoming HTTP requests
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		return http.csrf().disable().authorizeHttpRequests().requestMatchers("/user/Login").permitAll().and()
+		return http.csrf().disable().authorizeHttpRequests()
+				.requestMatchers("/user/Login","/user/add").permitAll().and()
 				.authorizeHttpRequests().requestMatchers("/**").authenticated().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.authenticationProvider(customAuthenticationProvider)

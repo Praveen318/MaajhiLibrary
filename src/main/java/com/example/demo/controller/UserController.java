@@ -51,7 +51,7 @@ public class UserController {
 	}
 
 	@PostMapping("/add")
-	@PreAuthorize("hasAuthority('Librarian')")
+//	@PreAuthorize("hasAuthority('Librarian')")
 	public String add(@RequestBody UserData userData) {
 		User user = Convertor.userdetailstouser(userData);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
